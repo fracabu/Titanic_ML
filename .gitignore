@@ -1,0 +1,33 @@
+# Ignora i file di log
+*.log
+
+# Ignora i file di configurazione dell'ambiente
+.env
+venv/
+
+# Ignora le directory di dipendenze
+__pycache__/
+*.py[cod]
+*.so
+*.dylib
+*.dll
+
+# Ignora i file di build
+build/
+dist/
+*.egg-info/
+
+# Ignora file non necessari
+distutils-precedence.pth
+
+# Non serve ignorare __init__.py perché serve in progetti Python
+# Se è necessario, togli questa riga:
+# __init__.py 
+
+# Ignora i file di sistema
+.DS_Store
+Thumbs.db
+
+# Ignora i file di output
+output/
+submission_advanced_features.csv
