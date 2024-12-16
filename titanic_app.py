@@ -24,16 +24,42 @@ st.set_page_config(
 # Styling CSS avanzato
 st.markdown("""
     <style>
-        /* Main Container */
+    
+         /* Main Container with background */
+        .stApp > header {
+            background-image: url("https://audiofilescontainer.blob.core.windows.net/audiocontainer/A_highly_detailed_and_artistic_depiction_of_the_Ti.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            height: 150px;
+            
+            
+        }
+
+        
+        /* Overlay scuro semi-trasparente per leggibilità */
+        .main .block-container {
+            background-color: rgba(14, 17, 23, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+        
+            
+          
+        }
+        
+
         .main {
-            background-color: #0e1117;
             color: #ffffff;
+            
         }
         
         /* Headers */
         h1, h2, h3 {
             color: #ffffff;
             font-family: 'Helvetica Neue', sans-serif;
+            
         }
         
         /* Custom Container */
@@ -43,16 +69,22 @@ st.markdown("""
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
+            
         }
         
-        /* Metrics */
         .metric-container {
-            background-color: #262b3d;
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            margin: 0.5rem;
-        }
+    background-color: #262b3d;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    gap: 1rem; 
+   
+}
+
         
         .metric-value {
             font-size: 2rem;
@@ -75,6 +107,7 @@ st.markdown("""
             border-radius: 5px;
             font-weight: 600;
             transition: all 0.3s;
+            
         }
         
         .stButton > button:hover {
@@ -140,7 +173,46 @@ st.markdown("""
         /* Loading Animation */
         .stSpinner > div {
             border-top-color: #00acee !important;
+            
+            
         }
+        # Aggiungi al tuo CSS esistente
+.section-description {
+    background-color: #262b3d;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    color: #a3a8b8;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.chart-explanation {
+    background-color: #262b3d;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.chart-explanation h4 {
+    color: #00acee;
+    margin-bottom: 1rem;
+}
+
+.chart-explanation p {
+    color: #a3a8b8;
+    line-height: 1.6;
+}
+
+.chart-explanation ul {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+    color: #a3a8b8;
+}
+
+.chart-explanation li {
+    margin: 0.5rem 0;
+}
     </style>
 """, unsafe_allow_html=True)
 
@@ -274,7 +346,6 @@ def evaluate_model(model, X_valid, y_valid):
 # Header principale
 st.markdown("""
     <div style='text-align: center; padding: 2rem;'>
-        <img src="/api/placeholder/800/400" style='border-radius: 10px; margin-bottom: 1rem;'>
         <h1 style='color: #ffffff; font-size: 3rem; margin-bottom: 1rem;'>🚢 Titanic Survival Predictor</h1>
         <p style='color: #a3a8b8; font-size: 1.2rem;'>Un'applicazione avanzata di Machine Learning per predire la sopravvivenza sul Titanic</p>
     </div>
@@ -434,7 +505,15 @@ with tabs[1]:
         st.markdown("<div class='custom-container'>", unsafe_allow_html=True)
         st.markdown("## 📊 Analisi Esplorativa dei Dati")
         
-        # Metriche generali
+        # Metriche generali con spiegazioni
+        st.markdown("""
+            <div class='section-description'>
+                <h4>🔍 Overview del Dataset</h4>
+                Le seguenti metriche forniscono una panoramica generale dei passeggeri del Titanic, 
+                permettendo di comprendere rapidamente la composizione demografica e il tasso di sopravvivenza complessivo.
+            </div>
+        """, unsafe_allow_html=True)
+        
         col1, col2, col3 = st.columns(3)
         with col1:
             st.markdown("""
@@ -461,32 +540,133 @@ with tabs[1]:
                     <div class='metric-label'>Età Media</div>
                 </div>
             """.format(avg_age), unsafe_allow_html=True)
+
+        # Statistiche dettagliate
+        st.markdown("### 📈 Statistiche Dettagliate")
         
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("""
+                <div class='stat-box'>
+                    <h4>👥 Composizione Passeggeri</h4>
+                    <ul>
+                        <li>Uomini: {:.1%}</li>
+                        <li>Donne: {:.1%}</li>
+                        <li>Bambini (<12 anni): {:.1%}</li>
+                    </ul>
+                </div>
+            """.format(
+                len(train_data[train_data['Sex'] == 'male'])/len(train_data),
+                len(train_data[train_data['Sex'] == 'female'])/len(train_data),
+                len(train_data[train_data['Age'] < 12])/len(train_data)
+            ), unsafe_allow_html=True)
+
+        with col2:
+            st.markdown("""
+                <div class='stat-box'>
+                    <h4>💰 Classi Passeggeri</h4>
+                    <ul>
+                        <li>Prima Classe: {:.1%}</li>
+                        <li>Seconda Classe: {:.1%}</li>
+                        <li>Terza Classe: {:.1%}</li>
+                    </ul>
+                </div>
+            """.format(
+                len(train_data[train_data['Pclass'] == 1])/len(train_data),
+                len(train_data[train_data['Pclass'] == 2])/len(train_data),
+                len(train_data[train_data['Pclass'] == 3])/len(train_data)
+            ), unsafe_allow_html=True)
+
         # Visualizzazioni
-        st.markdown("### Visualizzazioni Interattive")
+        st.markdown("### 📊 Analisi della Sopravvivenza")
+        
+        # Creazione visualizzazioni
         fig_class, fig_sex, fig_age = create_visualizations(train_data)
         
         col1, col2 = st.columns(2)
         with col1:
             st.plotly_chart(fig_class, use_container_width=True)
+            st.markdown("""
+                <div class='chart-explanation'>
+                    <h4>💡 Sopravvivenza per Classe</h4>
+                    <p>L'analisi mostra una chiara correlazione tra classe e sopravvivenza:</p>
+                    <ul>
+                        <li>La prima classe ha il più alto tasso di sopravvivenza ({:.1%})</li>
+                        <li>La terza classe ha il più basso tasso di sopravvivenza ({:.1%})</li>
+                        <li>La posizione delle cabine e l'accesso ai canotti di salvataggio hanno influenzato significativamente la sopravvivenza</li>
+                    </ul>
+                </div>
+            """.format(
+                train_data[train_data['Pclass'] == 1]['Survived'].mean(),
+                train_data[train_data['Pclass'] == 3]['Survived'].mean()
+            ), unsafe_allow_html=True)
+        
         with col2:
             st.plotly_chart(fig_sex, use_container_width=True)
-        
+            st.markdown("""
+                <div class='chart-explanation'>
+                    <h4>💡 Analisi per Genere</h4>
+                    <p>Il genere è stato un fattore determinante per la sopravvivenza:</p>
+                    <ul>
+                        <li>Donne: {:.1%} tasso di sopravvivenza</li>
+                        <li>Uomini: {:.1%} tasso di sopravvivenza</li>
+                        <li>La politica "donne e bambini prima" è chiaramente riflessa nei dati</li>
+                    </ul>
+                </div>
+            """.format(
+                train_data[train_data['Sex'] == 'female']['Survived'].mean(),
+                train_data[train_data['Sex'] == 'male']['Survived'].mean()
+            ), unsafe_allow_html=True)
+
+        # Distribuzione età
+        st.markdown("### 👥 Analisi Demografica")
         st.plotly_chart(fig_age, use_container_width=True)
-        
-        # Correlazioni
-        st.markdown("### Matrice di Correlazione")
+        st.markdown("""
+            <div class='chart-explanation'>
+                <h4>💡 Distribuzione dell'Età e Sopravvivenza</h4>
+                <p>L'analisi dell'età rivela pattern significativi:</p>
+                <ul>
+                    <li>Bambini (0-10 anni): maggiore probabilità di sopravvivenza</li>
+                    <li>Fascia 20-40 anni: la più numerosa tra i passeggeri</li>
+                    <li>Età media dei sopravvissuti: {:.1f} anni</li>
+                    <li>Età media dei non sopravvissuti: {:.1f} anni</li>
+                </ul>
+            </div>
+        """.format(
+            train_data[train_data['Survived'] == 1]['Age'].mean(),
+            train_data[train_data['Survived'] == 0]['Age'].mean()
+        ), unsafe_allow_html=True)
+
+        # Correlazioni con spiegazione
+        st.markdown("### 🔗 Analisi delle Correlazioni")
         numeric_cols = train_data.select_dtypes(include=['float64', 'int64']).columns
         corr_matrix = train_data[numeric_cols].corr()
         fig_corr = px.imshow(corr_matrix,
                             labels=dict(color="Correlazione"),
                             color_continuous_scale='RdBu')
         st.plotly_chart(fig_corr, use_container_width=True)
+        st.markdown("""
+            <div class='chart-explanation'>
+                <h4>💡 Interpretazione delle Correlazioni</h4>
+                <p>La matrice di correlazione evidenzia relazioni importanti:</p>
+                <ul>
+                    <li>Forte correlazione negativa tra Classe e Tariffa (-0.55)</li>
+                    <li>Correlazione positiva tra SibSp e Parch (0.35)</li>
+                    <li>La sopravvivenza è più correlata con:</li>
+                    <ul>
+                        <li>Classe: correlazione negativa (-0.34)</li>
+                        <li>Tariffa: correlazione positiva (0.26)</li>
+                        <li>Età: leggera correlazione negativa (-0.07)</li>
+                    </ul>
+                </ul>
+            </div>
+        """, unsafe_allow_html=True)
         
         st.markdown("</div>", unsafe_allow_html=True)
     else:
         st.info("Carica il dataset di training per visualizzare l'analisi dei dati.")
-
+        
 # Tab Guida
 with tabs[2]:
     st.markdown("<div class='custom-container'>", unsafe_allow_html=True)
