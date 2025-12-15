@@ -1,255 +1,156 @@
-<div align="center">
-
-# 🚢 Titanic Machine Learning Project
-
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.32.0-red.svg)](https://streamlit.io)
-[![XGBoost](https://img.shields.io/badge/XGBoost-2.0.3-green.svg)](https://xgboost.readthedocs.io/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
----
+<h1 align="center">Titanic ML</h1>
+<h3 align="center">Interactive Machine Learning on Titanic Dataset</h3>
 
 <p align="center">
-  <strong>Machine Learning interattivo sul dataset Titanic con UI moderna ed esperimenti avanzati</strong>
+  <em>Advanced experiments with modern Streamlit UI - Kaggle score: 0.77751</em>
 </p>
 
-[Esplora](#overview) • 
-[Risultati](#risultati) • 
-[Installazione](#installazione) • 
-[Documentazione](#documentazione) • 
-[Contribuisci](#contribuisci)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white" alt="Streamlit" />
+  <img src="https://img.shields.io/badge/XGBoost-2.0-189A00?style=flat-square" alt="XGBoost" />
+  <img src="https://img.shields.io/badge/Kaggle-20BEFF?style=flat-square&logo=kaggle&logoColor=white" alt="Kaggle" />
+</p>
 
-</div>
-
----
-
-## 📋 Indice
-- [Overview](#overview)
-- [Risultati Sperimentali](#risultati-sperimentali)
-- [Struttura Progetto](#struttura-progetto)
-- [Installazione](#installazione)
-- [Applicazione Streamlit](#applicazione-streamlit)
-- [Dataset](#dataset)
-- [Tecnologie](#tecnologie)
-- [Best Practices](#best-practices)
-- [Contribuire](#contribuire)
-- [Licenza](#licenza)
+<p align="center">
+  :gb: <a href="#english">English</a> | :it: <a href="#italiano">Italiano</a>
+</p>
 
 ---
 
-## 🎯 Overview
+<a name="english"></a>
+## :gb: English
 
-> Un'applicazione completa di Machine Learning che combina esperimenti avanzati con un'interfaccia utente moderna per l'analisi e la predizione della sopravvivenza sul Titanic.
+### Overview
 
-### ✨ Caratteristiche Principali
-* 🔄 Training modello interattivo
-* 📊 Visualizzazioni dinamiche
-* 🛠️ Feature engineering automatizzato
-* 📈 Multiple submission ottimizzate
-* 🎨 UI moderna e responsive
+A complete Machine Learning application combining advanced experiments with a modern user interface for Titanic survival analysis and prediction.
 
----
+### Features
 
-## 📊 Risultati Sperimentali
+- **Interactive Training** - Real-time model training
+- **Dynamic Visualizations** - Plotly charts and insights
+- **Automated Feature Engineering** - Advanced data preprocessing
+- **Multiple Submissions** - Optimized Kaggle submissions
+- **Modern UI** - Responsive Streamlit dashboard
 
-### 🏆 Performance Submissions
+### Results
 
-<table>
-<thead>
-  <tr>
-    <th>Submission</th>
-    <th>Score</th>
-    <th>Caratteristiche</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td><code>submission_advanced_features.csv</code></td>
-    <td><b>0.77751</b></td>
-    <td>
-      • Random Forest (200 trees)<br>
-      • Max depth: 7<br>
-      • Feature engineering avanzato
-    </td>
-  </tr>
-  <tr>
-    <td><code>submission_optimized.csv</code></td>
-    <td>0.75598</td>
-    <td>
-      • XGBoost ottimizzato<br>
-      • Hyperparameter tuning<br>
-      • Feature avanzate
-    </td>
-  </tr>
-  <tr>
-    <td><code>submission.csv</code></td>
-    <td>0.61722</td>
-    <td>
-      • Random Forest base<br>
-      • Feature engineering minimo
-    </td>
-  </tr>
-  <tr>
-    <td><code>submission_with_isalone.csv</code></td>
-    <td>0.60047</td>
-    <td>
-      • Feature IsAlone aggiunta<br>
-      • Encoding binario cabine
-    </td>
-  </tr>
-</tbody>
-</table>
+| Submission | Kaggle Score | Model |
+|------------|--------------|-------|
+| Advanced Features | **0.77751** | Random Forest (200 trees) |
+| Optimized | 0.75598 | XGBoost tuned |
+| Base | 0.61722 | Random Forest basic |
 
----
+### Metrics
 
-## 📁 Struttura Progetto
+- Accuracy: 84.9%
+- Precision: 82.2%
+- Recall: 81.1%
 
-```ascii
-TITANIC_ML/
-│
-├── 📱 titanic_app.py           # App Streamlit
-├── 📊 generate_submission.py   # Script base
-├── 📈 generate_submission_adv.py  # Features avanzate
-├── 🔧 generate_submission_pro.py  # Ottimizzazione
-├── 📝 titanic_eda.py          # Analisi dati
-│
-├── 📂 data/
-│   ├── train.csv              # Training set
-│   ├── test.csv               # Test set
-│   └── train_cleaned.csv      # Dati preprocessati
-│
-├── 📦 models/
-│   └── xgboost_model.pkl      # Modello salvato
-│
-└── 📄 requirements.txt        # Dipendenze
-```
+### Tech Stack
 
----
+| Category | Technologies |
+|----------|--------------|
+| Core | Python, Pandas, NumPy, Scikit-learn, XGBoost |
+| Visualization | Streamlit, Plotly, Seaborn |
+| Development | Git, Virtual Env, Jupyter |
 
-## ⚡ Installazione
+### Quick Start
 
 ```bash
-# Clone repository
-git clone https://github.com/yourusername/titanic_ml.git
+git clone https://github.com/fracabu/Titanic_ML.git
+cd Titanic_ML
 
-# Crea ambiente virtuale
 python -m venv venv
+venv\Scripts\activate  # Windows
 
-# Attiva ambiente
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
-
-# Installa dipendenze
 pip install -r requirements.txt
-
-# Avvia app
 streamlit run titanic_app.py
 ```
 
 ---
 
-## 💻 Applicazione Streamlit
+<a name="italiano"></a>
+## :it: Italiano
 
-<table>
-<tr>
-<td width="50%">
+### Panoramica
 
-### Features
-* 📊 Dashboard interattiva
-* 🔄 Training real-time
-* 📈 Visualizzazioni dinamiche
-* 💾 Export predizioni
-* 🎨 Tema dark mode
+Un'applicazione completa di Machine Learning che combina esperimenti avanzati con un'interfaccia utente moderna per l'analisi e la predizione della sopravvivenza sul Titanic.
 
-</td>
-<td width="50%">
+### Funzionalita
+
+- **Training Interattivo** - Training modello in real-time
+- **Visualizzazioni Dinamiche** - Grafici Plotly e insights
+- **Feature Engineering Automatico** - Preprocessing dati avanzato
+- **Multiple Submission** - Submission Kaggle ottimizzate
+- **UI Moderna** - Dashboard Streamlit responsive
+
+### Risultati
+
+| Submission | Score Kaggle | Modello |
+|------------|--------------|---------|
+| Advanced Features | **0.77751** | Random Forest (200 alberi) |
+| Optimized | 0.75598 | XGBoost ottimizzato |
+| Base | 0.61722 | Random Forest base |
 
 ### Metriche
-* 📈 Accuratezza: 84.9%
-* 🎯 Precisione: 82.2%
-* 📊 Recall: 81.1%
-* 🏆 Score Kaggle: 0.77751
 
-</td>
-</tr>
-</table>
+- Accuratezza: 84.9%
+- Precisione: 82.2%
+- Recall: 81.1%
 
----
+### Stack Tecnologico
 
-## 🛠️ Tecnologie
+| Categoria | Tecnologie |
+|-----------|------------|
+| Core | Python, Pandas, NumPy, Scikit-learn, XGBoost |
+| Visualizzazione | Streamlit, Plotly, Seaborn |
+| Development | Git, Virtual Env, Jupyter |
 
-<table>
-<tr>
-<td width="33%">
-<h4>Core</h4>
+### Avvio Rapido
 
-* Python 3.8+
-* Pandas
-* NumPy
-* Scikit-learn
-* XGBoost
-</td>
-<td width="33%">
-<h4>Visualization</h4>
+```bash
+git clone https://github.com/fracabu/Titanic_ML.git
+cd Titanic_ML
 
-* Streamlit
-* Plotly
-* Seaborn
-* Matplotlib
-</td>
-<td width="33%">
-<h4>Development</h4>
+python -m venv venv
+venv\Scripts\activate  # Windows
 
-* Git
-* Virtual Env
-* Jupyter
-</td>
-</tr>
-</table>
-
----
-
-## 📈 Performance e Ottimizzazione
-
-### Hardware Consigliato
-* 💻 RAM: 4GB+
-* 🔧 CPU: Multi-core
-* 💾 Disk: 1GB+
-
-### Tempi Esecuzione
-* ⚡ Training: 1-2 min
-* 🚀 Predizione: Real-time
-* 📊 EDA: Istantaneo
-
----
-
-## 🤝 Come Contribuire
-
-```mermaid
-graph LR
-    A[Fork] -->B[Feature Branch]
-    B --> C[Commit]
-    C --> D[Push]
-    D --> E[Pull Request]
+pip install -r requirements.txt
+streamlit run titanic_app.py
 ```
 
 ---
 
-## 📫 Contatti
+## Project Structure
 
-<div align="center">
+```
+TITANIC_ML/
+├── titanic_app.py              # Streamlit app
+├── generate_submission.py      # Base script
+├── generate_submission_adv.py  # Advanced features
+├── generate_submission_pro.py  # Optimization
+├── data/
+│   ├── train.csv
+│   ├── test.csv
+│   └── train_cleaned.csv
+└── models/
+    └── xgboost_model.pkl
+```
 
-[![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/fracabu)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/francesco-~-capurso-5801031a9/)
+## Requirements
 
-</div>
+- Python 3.8+
+- 4GB+ RAM
+
+## License
+
+MIT
 
 ---
 
-<div align="center">
-
-## 📄 Licenza
-
-MIT © [Francesco Cabu](LICENSE)
-
-</div>
+<p align="center">
+  <a href="https://github.com/fracabu">
+    <img src="https://img.shields.io/badge/Made_by-fracabu-8B5CF6?style=flat-square" alt="Made by fracabu" />
+  </a>
+</p>
